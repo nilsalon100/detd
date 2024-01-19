@@ -47,11 +47,10 @@ class Configuration:
 
 class ListenerConfiguration:
 
-    def __init__(self, interface, stream, traffic, maddress):
+    def __init__(self, interface, stream, maddress):
 
         self.interface = interface
         self.stream = stream
-        self.traffic = traffic
         self.maddress = maddress
 
 
