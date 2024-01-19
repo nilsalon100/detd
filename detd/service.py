@@ -331,10 +331,6 @@ class ServiceRequestHandler(socketserver.DatagramRequestHandler):
     def _add_listener(self, request):
         addr = request.dmac
         vid = request.vid
-        pcp = request.pcp
-        txoffset = 0
-        interval = 0
-        size = 0
         maddress = request.maddress
         
         interface_name = request.interface
