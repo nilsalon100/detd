@@ -345,9 +345,9 @@ class ServiceRequestHandler(socketserver.DatagramRequestHandler):
         config = ListenerConfiguration(interface, stream, maddress)
 
         #add maddr
-        vlan_interface, soprio = self.server.manager.add_listener(config)
+        vlan_interface = self.server.manager.add_listener(config)
 
-        return vlan_interface, soprio
+        return vlan_interface
 
     def _add_listener_socket(self, request):
         # FIXME: complete once manager implements setup socket
