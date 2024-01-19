@@ -340,7 +340,7 @@ class ServiceRequestHandler(socketserver.DatagramRequestHandler):
         interface_name = request.interface
 
         interface = Interface(interface_name)
-        stream = StreamConfiguration(addr, vid, pcp, 0)
+        stream = ListenerStreamConfiguration(addr, vid)
 
         config = ListenerConfiguration(interface, stream, maddress)
 
