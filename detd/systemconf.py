@@ -176,22 +176,9 @@ class SystemConfigurator:
             # FIXME add device restore
             raise
 
-        #this is the important difference
-        # FIXME: consider other exceptions, e.g. TypeError
-        #try:
-            # FIXME add qdisc reset
-        #    self.qdisc.setup(interface, mapping, scheduler, stream.base_time)
-        #except subprocess.CalledProcessError:
-        #    raise
-
-        if stream.vid in self.already_configured_vids:
-            return
-
         try:
             self.vlan.setup_listener(interface, stream)
-            self.already_configured_vids.append(stream.vid)
         except subprocess.CalledProcessError:
-            self.qdisc.unset(interface)
             raise
 
 
