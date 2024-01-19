@@ -201,27 +201,11 @@ class InterfaceManager():
 
 
     def add_listener(self, config):
-        '''
-        Performs the local configuration for the configuration provided
-        and returns the associated VLAN interface and socket priority
-
-
-        Parameters:
-
-            config: configuration
-
-
-        Returns:
-
-            VLAN interface
-            socket priority
-        '''
-
         logger.info("Adding listener to InterfaceManager")
 
 
         #soprio, tc, queue = self.mapping.assign_and_map(config.stream.pcp, self.scheduler.traffics)
-        soprio = self.mapping.assign_soprio_and_map(config.stream.pcp)
+        #soprio = self.mapping.assign_soprio_and_map(config.stream.pcp)
 
         # Configure the system
         try:
@@ -231,7 +215,7 @@ class InterfaceManager():
             raise
 
         vlan_interface = "{}.{}".format(self.interface.name, config.stream.vid)
-        return vlan_interface, soprio
+        return vlan_interface#, soprio
 
 
     
