@@ -219,23 +219,10 @@ class DeviceConfigurator:
 
         ethtool.set_rings(interface)
 
-    def setup_listener(self, interface, maddress, eee="off"):
-
-        sysinfo = SystemInformation()
-        ip = CommandIp()
-        ethtool = CommandEthtool()
-
-        ethtool.set_eee(interface, eee)
+    def setup_listener(self, interface, maddress):
         ethtool.set_features_ingress(interface)
 
         ip.subscribe_multicast(interface.name, maddress)
-        
-        if sysinfo.interface_supports_split_channels(interface):
-            ethtool.set_split_channels(interface)
-        else:
-            ethtool.set_combined_channels(interface)
-
-        ethtool.set_rings(interface)
 
 
 
