@@ -233,15 +233,14 @@ class ServiceRequestHandler(socketserver.DatagramRequestHandler):
 
 
 
-    def build_listener_qos_response(self, ok, vlan_interface=None, soprio=None, fd=None):
+    def build_listener_qos_response(self, ok, vlan_interface=None, fd=None):
         response = StreamListenerQosResponse()
 
         response.ok = ok
 
         if response.ok:
             if fd is None:
-                response.vlan_interface = vlan_interface
-                response.socket_priority = soprio
+                response.vlane = vlan_interface
 
         message = response.SerializePartialToString()
         return message
@@ -250,7 +249,7 @@ class ServiceRequestHandler(socketserver.DatagramRequestHandler):
 
     def send_listener_qos_response(self, ok, vlan_interface, soprio):
 
-        message = self.build_listener_qos_response(ok, vlan_interface, soprio)
+        message = self.build_listener_qos_response(ok, vlan_interface)
         self.send(message)
 
 
