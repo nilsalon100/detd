@@ -80,6 +80,19 @@ class StreamConfiguration:
         self.txoffset = txoffset
         self.base_time = base_time
 
+class ListenerStreamConfiguration:
+
+    def __init__(self, addr, vid):
+
+        if not Check.is_mac_address(addr):
+            raise TypeError("Invalid MAC address")
+
+        if not Check.is_valid_vlan_id(vid):
+            raise TypeError("Invalid VLAN ID")
+
+        self.addr = addr
+        self.vid = vid
+
 
 class TrafficSpecification:
 
