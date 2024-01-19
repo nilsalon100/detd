@@ -212,6 +212,5 @@ class ServiceProxy:
             raise RuntimeError("The configuration could not be applied")
 
         vlan_interface = response.vlan_interface
-        soprio = response.socket_priority
 
-        return vlan_interface, soprio
+        return vlan_interface
