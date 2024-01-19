@@ -438,16 +438,15 @@ class ServiceRequestHandler(socketserver.DatagramRequestHandler):
             elif request.setup_socket == False:
                 try:
                     ok = False
-                    vlan_interface, soprio = self.add_listener(listenerrequest)
+                    vlan_interface = self.add_listener(listenerrequest)
                     ok = True
                 except Exception as ex:
                     logger.exception("Exception raised while setting up a listener")
 
                 if not ok:
                     vlan_interface = None
-                    soprio = None
 
                 try:
-                    self.send_listener_qos_response(ok, vlan_interface, soprio)
+                    self.send_listener_qos_response(ok, vlan_interface)
                 except Exception as ex:
                     logger.exception("Exception raised while sending the QoS response after setting up a listener")
