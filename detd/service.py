@@ -355,31 +355,8 @@ class ServiceRequestHandler(socketserver.DatagramRequestHandler):
 
     
     def _mock_add_listener(self, request):
-
-        with mock.patch.object(QdiscConfigurator,  'setup', return_value=None), \
-             mock.patch.object(CommandIp,   'run', return_value=None), \
-             mock.patch.object(DeviceConfigurator, 'setup_listener', return_value=None), \
-             mock.patch.object(SystemInformation,  'get_pci_id', return_value=('8086:4B30')), \
-             mock.patch.object(SystemInformation,  'get_rate', return_value=1000 * 1000 * 1000), \
-             mock.patch.object(Check,  'is_interface', return_value=True):
-
-            addr = request.dmac
-            vid = request.vid
-            pcp = request.pcp
-            txoffset = request.txmin
-            interval = request.period
-            size = request.size
-            interface_name = request.interface
-
-            stream = StreamConfiguration(addr, vid, pcp, txoffset)
-            traffic = TrafficSpecification(interval, size)
-            interface = Interface(interface_name)
-
-            config = Configuration(interface, stream, traffic)
-
-            vlan_interface, soprio = self.server.manager.add_listener(config)
-
-        return vlan_interface, soprio
+        #not implemented
+        raise
     
     def _mock_add_listener_socket(self, request):
         # FIXME: modify once manager implements setup socket
